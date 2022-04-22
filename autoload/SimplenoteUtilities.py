@@ -20,7 +20,7 @@ else:
 import os.path
 
 DEFAULT_SCRATCH_NAME = vim.eval("g:simplenote_scratch_buffer")
-INDEX_CACHE_FILE = os.path.join(os.path.expanduser("~"),".snvim")
+INDEX_CACHE_FILE = os.path.join(os.path.expanduser("~"),".vim/snvim")
 
 class SimplenoteVimInterface(object):
     """ Interface class to provide functions for interacting with VIM """
