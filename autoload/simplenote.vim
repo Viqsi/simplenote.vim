@@ -173,6 +173,7 @@ function! s:ScratchBuffer()
     setlocal bufhidden=hide
     setlocal noswapfile
     setlocal cursorline
+    setlocal synmaxcol=0
 
     if (s:vbuff == 0) && (s:listsize > 0)
     "    exe "resize " . s:listsize
