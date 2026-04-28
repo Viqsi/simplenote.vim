@@ -342,6 +342,13 @@ class SimplenoteVimInterface(object):
             except UnicodeEncodeError:
                 buffer[:] = list(map(lambda x: unicode(x), note["content"].split("\n")))
             vim.command("setlocal nomodified")
+
+            # Fix for #105 (recipe from `:h clear-undo`)
+            old_undolevels = vim.eval('&l:undolevels')
+            vim.command('setlocal undolevels=-1')
+            vim.command('normal! a \x08\x1b')
+            vim.command(f'let &l:undolevels = {old_undolevels}')
+
             vim.command("doautocmd BufReadPost")
             # BufReadPost can cause auto-selection of filetype based on file content so set filetype after this
             if int(vim.eval("exists('g:SimplenoteFiletype')")) == 1:
